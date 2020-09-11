@@ -263,6 +263,71 @@ Output:
 
 ### The 'find' helper
 
+We want to search a value in some array and when we found it, we don't want to continue
+checking the remaining ones.
+
+The common way with the _for loop_:
+
+```javascript
+var users = [{ name: 'Jill' }, { name: 'Alex' }, { name: 'Bill' }];
+
+var user;
+
+for (var i = 0; i < users.length; i++) {
+  if (users[i].name === 'Alex') {
+    user = users[i];
+    break; //Once when we find the particular user, we don't need to continue looping over the array but stop there.
+  }
+}
+
+/*
+Output:
+
+>{ name: 'Alex' }
+*/
+```
+
+Using _find_ method:
+
+```javascript
+users.find(user => user.name === 'Alex');
+
+/*
+Output:
+
+>{ name: 'Alex' }
+*/
+```
+
+The find method returns the value of the first element of the array that matches with the
+conditional function given. With this method we walk though each element of the array,
+passes the element to the iterator function and corroborates if it matches with it and
+return true or false, once it returns true the find helper inmediatly exits the iteration
+returning the element that it found.
+
+Here's another example:
+
+```javascript
+var posts = [
+  { id: 1, title: 'New Post' },
+  { id: 2, title: 'Old Post' }
+];
+
+var comment = {postId = 1, content: 'Great Post'};
+
+function postForComment(posts, comment) {
+  return posts.find(post => post.id === comment.postId);
+}
+
+postForFirstComment = postForComment(post, comment);
+
+/*
+Output:
+
+>{ 'id': 1, 'title': 'New Post' }
+*/
+```
+
 ### The 'every' helper
 
 ### The 'some' helper
