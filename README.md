@@ -161,6 +161,106 @@ Output:
 
 ### The 'filter' helper
 
+We have an array of products but we want to obtain a new one with specific elements.
+
+The common way with the _for loop_:
+
+```javascript
+var products = [
+  { name: 'cucumber', type: 'vegetable' },
+  { name: 'banana', type: 'fruit' },
+  { name: 'celery', type: 'vegetable' },
+  { name: 'orange', type: 'fruit' }
+];
+
+var filteredProducts = [];
+
+for (var i = 0; i < products.length; i++) {
+  if (products[i].type === 'fruit') {
+    filteredProducts.push(products[i]);
+  }
+}
+
+console.log(filteredProducts);
+
+/*
+Output:
+
+> [{'name': 'banana', 'type': 'fruit'},
+{'name': 'orange', 'type': 'fruit'}]
+*/
+```
+
+Using _filter_ method:
+
+```javascript
+var filteredProducts = products.filter(product => product.type === 'fruit');
+
+console.log(filteredProducts);
+
+/*
+Output:
+
+> [{'name': 'banana', 'type': 'fruit'},
+{'name': 'orange', 'type': 'fruit'}]
+*/
+```
+
+The filter method creates a new array with every element that matches the condition
+implemented by the function given. It takes each element of the array, then passes to the
+iterator function and return true or false if it returns true it will be included into the
+new array.
+
+Here's a bit more complicated example:
+
+```javascript
+var products = [
+  { name: 'cucumber', type: 'vegetable', quantity: 0, price: 1 },
+  { name: 'banana', type: 'fruit', quantity: 10, price: 15 },
+  { name: 'celery', type: 'vegetable', quantity: 30, price: 9 },
+  { name: 'orange', type: 'fruit', quantity: 3, price: 5 }
+];
+
+/*Lets filter vegetables which quantity is greater that 0 and price is less than 10.*/
+
+var cheapVegetables = products.filter(
+  product => product.type === 'vegetable' && product.quantity > 0 && product.price < 10
+);
+
+console.log(cheapVegetables);
+
+/*
+Output:
+
+> [{ name: 'celery', type: 'vegetable', quantity: 30, price: 9 }]
+*/
+```
+
+Another example:
+
+```javascript
+var post = { id: 4, title: 'New Post' };
+var comments = [
+  { postId: 4, content: 'awesome post' },
+  { postId: 3, content: 'it was ok' },
+  { postId: 4, content: 'neat' }
+];
+
+function commentsForPost(post, comments) {
+  return comments.filter(comment => comment.postId === post.id);
+}
+
+var commentsForFourthPost = commentsForPost(post, comments);
+
+console.log(commentsForFourthPost);
+
+/*
+Output:
+
+> [{ postId: 4, content: 'awesome post'}, { postId: 4, content: 'neat'}]
+*/
+```
+
 ### The 'find' helper
 
 ### The 'every' helper
