@@ -6,7 +6,7 @@
 
 When we want **iteration** over an array...
 
-The common way with the ver classic _for loop_:
+The common way with the classic _for loop_:
 
 ```javascript
 var colors = ['red', 'blue', 'green'];
@@ -96,11 +96,74 @@ into a forEach method._
 
 ### The 'map' helper
 
+We want to double the value of every array's element.
+
+The common way with the _for loop_:
+
+```javascript
+var numbers = [1, 2, 3];
+var doubledNumbers = [];
+
+for (var i = 0; numbers.length; i++) {
+  doubledNumbers.push(numers[i] * 2);
+}
+
+console.log(doubledNumbers);
+
+/*
+Output:
+
+> [2, 4, 6]
+*/
+```
+
+Using _map_ method:
+
+```javascript
+var doubledNumbers = numbers.map(function (number) {
+  return number * 2;
+});
+```
+
+Other way to write this is:
+
+```javascript
+var doubledNumbers = numbers.map(number => number * 2);
+
+/*
+Output:
+
+> [2, 4, 6]
+*/
+```
+
+The "map" method creates a _new array_ with the results of the called function applied to
+each one of its elements. It goes through each element of the array and apply to it the
+iterator function, then returns a new value of the element that will be pushed into a
+brand new array. With map we dont make changes in the existing array.
+
+Let's look at another example:
+
+```javascript
+var cars = [
+  { model: 'Buick', price: 'CHEAP' },
+  { model: 'Camaro', price: 'expensive' }
+];
+
+var prices = cars.map(car => car.price);
+
+/*
+Output:
+
+> ['CHEAP', 'expensive']
+*/
+```
+
 ### The 'filter' helper
 
 ### The 'find' helper
 
-### The 'every'
+### The 'every' helper
 
 ### The 'some' helper
 
