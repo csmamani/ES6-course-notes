@@ -491,4 +491,25 @@ about the data on it.
 
 ## Template strings
 
+Template strings allow us to inject javascript expressions into arrays. It makes the
+string much more legible.
+
+```javascript
+function getMessage() {
+  const year = new Date().getFullYear();
+
+  return `The year is ${year}`;
+}
+
+let message = getMessage();
+
+console.log(message);
+
+/*
+Output:
+
+>The year is 2020
+*/
+```
+
 ## Arrow functions
