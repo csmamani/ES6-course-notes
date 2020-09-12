@@ -478,6 +478,17 @@ Output:
 
 ## Const and Let variables
 
+In modern JS we prefer using let and const for declaring variables instead of var. It
+makes our code more legible and easily to read though var doesn't give us information
+about the data on it.
+
+| keyword                | const | let | var |
+| ---------------------- | ----- | --- | --- |
+| **global scope**       | NO    | NO  | YES |
+| **function scope**     | YES   | YES | YES |
+| **block scope**        | YES   | YES | NO  |
+| **can be reassigned?** | NO    | YES | YES |
+
 ## Template strings
 
 ## Arrow functions
