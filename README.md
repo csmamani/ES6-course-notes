@@ -330,9 +330,151 @@ Output:
 
 ### The 'every' helper
 
+We want to determinate that all of the array elements satifact a condition.
+
+The common way with the _for loop_:
+
+```javascript
+var computers = [
+  { name: 'Apple', ram: 24 },
+  { name: 'Compaq', ram: 4 },
+  { name: 'Acer', ram: 32 }
+];
+
+var allComputersCanRunProgram = true;
+var onlySomeComputerCanRunProgram = false;
+
+for (var i = 0; i < computers.length; i++) {
+  var computer = computers[i];
+
+  if (computer.ram < 16) {
+    allComputersCanRunProgram = false;
+  } else {
+    onlySomeComputersCanRunProgram = true;
+  }
+}
+
+console.log(allComputersCanRunProgram);
+console.log(onlySomeComputersCanRunProgram);
+
+/*
+Output:
+
+>False
+>True
+*/
+```
+
+Using _every_ method:
+
+```javascript
+var allComputersCanRunProgram = computers.every(computer => computer.ram > 16);
+
+console.log(allComputersCanRunProgram);
+/*
+Output:
+
+>False
+*/
+```
+
+The every method returns a true or false depending on _all the elements_ in the array
+match the function given as parameter. Even if just only one element doesn't match it
+returns false.
+
 ### The 'some' helper
 
+The some method return true if at least one element of the array matches the condition
+given by the callback function.
+
+The common way with the _for loop_:
+
+```javascript
+var someComputersCanRunProgram = computers.some(computer => computer.ram > 16);
+
+console.log(someComputersCanRunProgram);
+/*
+Output:
+
+>True
+*/
+```
+
 ### The 'reduce' helper
+
+We have every element on the array and pass it to the iterator, we also have and initial
+value. The method reduce get executed and reduce the entire array into a single value.
+
+```javascript
+var numbers = [10, 20, 30];
+var sum = 0;
+
+for (var i = 0; i < numbers.length; i++) {
+  sum += numbers[i];
+}
+```
+
+Using _reduce_ method:
+
+```javascript
+numbers.reduce((sum, number) => {
+  return sum + number;
+}, 0);
+```
+
+In this case the initial value is zero. When the reduce is called it adds the first
+element of the array numbers to the variable sum that its value is 0. Then asigns to sum
+the value of 10, when it passes to the next element the sum variable's value is 10 and so
+on.
+
+Here's another example:
+
+```javascript
+var primaryColors = [{ color: 'red' }, { color: 'yellow' }, { color: 'blue' }];
+
+/*We want to reduce this array of objetcs into an array of strings*/
+primaryColorsString = primaryColors.reduce((accumulator, primaryColor) => {
+  accumulator.push(primaryColor.color);
+  return accumulator;
+}, []);
+
+console.log(primaryColorsString);
+
+/*
+Output:
+
+>['red', 'yellow', 'blue']
+*/
+```
+
+And one last example:
+
+```javascript
+function balancedParens(string) {
+  return !string.split('').reduce((accumulator, char) => {
+      if(accumulator < 0) {
+          return accumulator;
+      }
+      if(char==='(') {
+          return ++accumulator;
+      }
+      if(char ====')') {
+          return --accumulator;
+      }
+  }, 0);
+}
+
+var unbalancedParens = balancedParens('((((');
+
+console.log(unbalancedParens);
+
+/*
+Output:
+
+
+>4
+*/
+```
 
 ## Const and Let variables
 
